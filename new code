@@ -1,0 +1,86 @@
+function addToZero(nums) {
+  let seenNumbers = new Set();
+
+  for (let num of nums) {
+    if (seenNumbers.has(-num)) {
+      return true;
+    }
+    seenNumbers.add(num);
+  }
+
+  return false;
+}
+
+console.log(addToZero([])); // -> False
+console.log(addToZero([1])); // -> False
+console.log(addToZero([1, 2, 3])); // -> False
+console.log(addToZero([1, 2, 3, -2])); // -> True
+
+/* For a small array the function would finish very quickly, possibly in the range of microseconds to milliseconds.
+For a medium-sized array the execution time might be in the range of milliseconds to tens of milliseconds.
+For a large array the execution time could be in the range of tens of milliseconds to hundreds of milliseconds.*/
+
+function hasUniqueChars(word) {
+  let uniqueChars = new Set();
+
+  for (let char of word) {
+    if (uniqueChars.has(char)) {
+      return false;
+    }
+
+    uniqueChars.add(char);
+  }
+
+  return true;
+}
+
+console.log(hasUniqueChars("Monday"));
+console.log(hasUniqueChars("Moonday"));
+
+function isPangram(sentence) {
+  const lowercaseSentence = sentence.toLowerCase();
+
+  const uniqueLetters = new Set();
+
+  for (let char of lowercaseSentence) {
+    if (/[a-z]/.test(char)) {
+      uniqueLetters.add(char);
+    }
+  }
+
+  return uniqueLetters.size === 26;
+}
+
+console.log(isPangram("The quick brown fox jumps over the lazy dog!"));
+console.log(isPangram("I like cats, but not mice"));
+
+
+
+
+function findLongestWord(words) {
+  let longestLength = 0;
+
+  for (let word of words) {
+    if (word.length > longestLength) {
+      longestLength = word.length;
+    }
+  }
+
+  return longestLength;
+}
+
+console.log(findLongestWord(["hi", "hello"]));
+
+
+
+/* NOTES */
+/*The doublerInsert function took significantly more time compared to doublerAppend when both were applied to the extraLargeArray. 
+This indicates that, for this particular scenario, using unshift in the doublerInsert function
+ is less efficient than using push in the doublerAppend function. */
+ /*It appears that the performance difference between doublerAppend and doublerInsert becomes more noticeable
+  as the array size increases. doublerInsert tends to perform worse as the size of the array grows. This demonstrates that the unshift
+   operation used in doublerInsert has a higher time complexity compared to the push operation used in doublerAppend. The larger the array, 
+   the more significant this difference becomes.*/
+
+
+   
